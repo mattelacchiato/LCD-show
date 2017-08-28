@@ -10,7 +10,7 @@ sudo cp ./boot/config-35.txt /boot/config.txt
 arch=$(uname -m)
 kernel=$(uname -r)
 version=$(uname -v)
-if [test $arch = "armv71"]||[test $arch = "armv61"]; then
+if [test $arch = "armv7l"]||[test $arch = "armv6l"]; then
   echo "this is an $arch architecture, assuming Raspberry Pi"
   version=${version%% *}
   version=${version#*#}
