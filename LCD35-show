@@ -10,16 +10,19 @@ sudo cp ./boot/config-35.txt /boot/config.txt
 arch=$(uname -m)
 kernel=$(uname -r)
 version=$(uname -v)
-if [ $arch = "armv7l"] || [ $arch = "armv6l"]; then
+if [ $arch = "armv7l" ] || [ $arch = "armv6l" ] 
+then
   echo "this is an $arch architecture, assuming Raspberry Pi"
   version=${version%% *}
   version=${version#*#}
   echo $version
-  if test $version -lt 970; then
+  if test $version -lt 970 
+  then
      echo "reboot"
   else
     echo "need to update touch configuration"
-    if test $version -ge 1023;then
+    if test $version -ge 1023
+    then
       echo "install xserver-xorg-input-evdev_2.10.5-1"
       sudo dpkg -i -B xserver-xorg-input-evdev_2.10.5-1_armhf.deb
     else
