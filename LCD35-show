@@ -1,24 +1,44 @@
 #!/bin/bash
-sudo mkdir /etc/X11/xorg.conf.d
+i=1
+for lines in `cat ./boot/mark`			//non existent in 1st installation
+do
+  case ${i} in
+  1) var1=${lines};;
+  esac
+  i=`expr ${i} + 1`
+done
+echo "$var1"							//0 at first installation
+
+if test "$var1" = "0"; then
+  sudo mkdir /etc/X11/xorg.conf.d		
+  sudo apt-get install -y xserver-xorg-input-evdev
+  sudo cp -rf /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/45-evdev.conf
+  echo "1" > ./boot/mark
+fi
+
 sudo cp ./usr/tft35a-overlay.dtb /boot/overlays/
 sudo cp ./usr/tft35a-overlay.dtb /boot/overlays/tft35a.dtbo
 sudo cp -rf ./usr/99-calibration.conf-35  /etc/X11/xorg.conf.d/99-calibration.conf
 sudo cp -rf ./usr/99-fbturbo.conf  /usr/share/X11/xorg.conf.d/
-sudo cp ./usr/cmdline.txt /boot/
+if [ -b /dev/mmcblk0p7 ]; then
+  sudo cp ./usr/cmdline.txt-noobs /boot/cmdline.txt
+else
+  sudo cp ./usr/cmdline.txt /boot/
+fi 
+
 sudo cp ./usr/inittab /etc/
 sudo cp ./boot/config-35.txt /boot/config.txt
 arch=$(uname -m)
 kernel=$(uname -r)
 version=$(uname -v)
-if [ $arch = "armv7l" ] || [ $arch = "armv6l" ] 
-then
+if [ $arch = "armv7l" ] || [ $arch = "armv6l" ]; then
   echo "this is an $arch architecture, assuming Raspberry Pi"
   version=${version%% *}
   version=${version#*#}
   echo $version
   if test $version -lt 970 
   then
-     echo "reboot"
+     echo "rebooting"
   else
     echo "need to update touch configuration"
     if test $version -ge 1023
@@ -30,9 +50,10 @@ then
       sudo dpkg -i -B xserver-xorg-input-evdev_1%3a2.10.3-1_armhf.deb
     fi
     sudo cp -rf /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/45-evdev.conf
-    echo "reboot"
+    echo "rebooting"
   fi
 else
-  echo "this is not a raspberrypi kernel, no need to update touch configure, reboot"
+  echo "this is not a raspberrypi kernel, no need to update touch configuration, reboot"
 fi
+sleep 5
 sudo reboot
