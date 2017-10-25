@@ -1,13 +1,13 @@
 #!/bin/bash
 i=1
-for lines in `cat ./boot/mark`			//non existent in 1st installation
+for lines in `cat ./boot/mark`			#non existent in 1st installation
 do
   case ${i} in
   1) var1=${lines};;
   esac
   i=`expr ${i} + 1`
 done
-echo "$var1"							//0 at first installation
+echo "$var1"							          #0 at first installation
 
 if test "$var1" = "0"; then
   sudo mkdir /etc/X11/xorg.conf.d		
