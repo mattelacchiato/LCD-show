@@ -12,7 +12,7 @@ echo "$var1"							          #0 at first installation
 if test "$var1" = "0"; then
   sudo mkdir /etc/X11/xorg.conf.d		
   sudo apt-get install -y xserver-xorg-input-evdev
-  sudo cp -rf /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/45-evdev.conf
+  sudo cp -f /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/45-evdev.conf
   sudo apt-get install -y evtest tslib libts-bin
   echo "1" > ./boot/mark
 fi
@@ -20,9 +20,9 @@ fi
 sudo cp ./usr/tft35a-overlay.dtb /boot/overlays/
 sudo cp ./usr/tft35a-overlay.dtb /boot/overlays/tft35a.dtbo
 echo "Copied tft overlays"
-sudo cp -rf ./usr/99-calibration.conf-35  /etc/X11/xorg.conf.d/99-calibration.conf
+sudo cp -f ./usr/99-calibration.conf-35  /etc/X11/xorg.conf.d/99-calibration.conf
 echo "Copied 99-calibration file"
-sudo cp -rf ./usr/99-fbturbo.conf  /usr/share/X11/xorg.conf.d/
+sudo cp -f ./usr/99-fbturbo.conf  /usr/share/X11/xorg.conf.d/
 echo "Copied 99-fbturbo file"
 if [ -b /dev/mmcblk0p7 ]; then
   sudo cp ./usr/cmdline.txt-noobs /boot/cmdline.txt
