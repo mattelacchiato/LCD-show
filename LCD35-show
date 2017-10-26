@@ -23,7 +23,7 @@ echo "Copied tft overlays"
 sudo cp -rf ./usr/99-calibration.conf-35  /etc/X11/xorg.conf.d/99-calibration.conf
 echo "Copied 99-calibration file"
 sudo cp -rf ./usr/99-fbturbo.conf  /usr/share/X11/xorg.conf.d/
-echo "Copied 99-calibration file"
+echo "Copied 99-fbturbo file"
 if [ -b /dev/mmcblk0p7 ]; then
   sudo cp ./usr/cmdline.txt-noobs /boot/cmdline.txt
 else
@@ -38,9 +38,9 @@ kernel=$(uname -r)
 version=$(uname -v)
 if [ $arch = "armv7l" ] || [ $arch = "armv6l" ]; then
   echo "This is an $arch architecture, assuming Raspberry Pi"
-  version=${version%% *}
-  version=${version#*#}
-  echo $version
+#  version=${version%% *}
+#  version=${version#*#}
+#  echo $version
 #  if test $version -lt 970 
 #  then
 #     echo "rebooting"
