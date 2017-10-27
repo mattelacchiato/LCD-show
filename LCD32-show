@@ -17,8 +17,8 @@ if test "$var1" = "0"; then
   echo "1" > ./boot/mark
 fi
 
-sudo cp ./usr/tft32a-overlay.dtb /boot/overlays/
-sudo cp ./usr/tft32a-overlay.dtb /boot/overlays/tft32a.dtbo
+sudo cp ./usr/tft9341-overlay.dtb /boot/overlays/
+sudo cp ./usr/tft9341-overlay.dtb /boot/overlays/tft9341.dtbo
 echo "Copied tft overlays"
 sudo cp -f ./usr/99-calibration.conf-32  /etc/X11/xorg.conf.d/99-calibration.conf
 echo "Copied 99-calibration file"
