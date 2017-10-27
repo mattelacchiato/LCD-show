@@ -57,9 +57,8 @@ if [ $arch = "armv7l" ] || [ $arch = "armv6l" ]; then
 #    sudo cp -rf /usr/share/X11/xorg.conf.d/10-evdev.conf /usr/share/X11/xorg.conf.d/45-evdev.conf
 #    echo "rebooting"
 #  fi
-  echo "rebooting"
+  echo "Please reboot now!"
 else
-  echo "this is not a raspberrypi kernel, no need to update touch configuration, reboot"
+  echo "this is not a raspberrypi kernel, no need to update touch configuration, please reboot now!"
 fi
-#sleep 5
-#sudo reboot
+sleep 2
