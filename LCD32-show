@@ -17,10 +17,10 @@ if test "$var1" = "0"; then
   echo "1" > ./boot/mark
 fi
 
-sudo cp ./usr/tft35a-overlay.dtb /boot/overlays/
-sudo cp ./usr/tft35a-overlay.dtb /boot/overlays/tft35a.dtbo
+sudo cp ./usr/tft32a-overlay.dtb /boot/overlays/
+sudo cp ./usr/tft32a-overlay.dtb /boot/overlays/tft32a.dtbo
 echo "Copied tft overlays"
-sudo cp -f ./usr/99-calibration.conf-35  /etc/X11/xorg.conf.d/99-calibration.conf
+sudo cp -f ./usr/99-calibration.conf-32  /etc/X11/xorg.conf.d/99-calibration.conf
 echo "Copied 99-calibration file"
 sudo cp -f ./usr/99-fbturbo.conf  /usr/share/X11/xorg.conf.d/
 echo "Copied 99-fbturbo file"
@@ -31,7 +31,7 @@ else
 fi 
 echo "Copied cmdline.txt"
 sudo cp ./usr/inittab /etc/
-sudo cp ./boot/config-35.txt /boot/config.txt
+sudo cp ./boot/config-32.txt /boot/config.txt
 echo "Copied config.txt"
 arch=$(uname -m)
 kernel=$(uname -r)
