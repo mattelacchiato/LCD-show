@@ -9,6 +9,8 @@ do
 done
 echo "$var1"							          #0 at first installation
 
+echo "<<< Installing fbturbo >>>"
+sudo apt-get install -y xserver-xorg-video-fbturbo
 sudo cp ./usr/tft35a-overlay.dtb /boot/overlays/
 sudo cp ./usr/tft35a-overlay.dtb /boot/overlays/tft35a.dtbo
 echo "<<< Copied tft overlays >>>"
